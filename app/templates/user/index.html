@@ -1,0 +1,83 @@
+{%extends 'user/base.html' %}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-9">
+            <ul class="list-unstyled row">
+                {% for p in productList%}
+                    <li class="list-item col-sm-3 mt-3">
+                        <div class='item-container pt-2 pr-2'>
+                            <a href="/view-product/{{p.id}}" class="product-item">
+                                <img src="{{p.image}}" alt="" class="product-image">
+                                <div class="item-info">
+                                    <div>
+                                        <span class='product-name'>{{p.name}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="price-title">Giá bán: </span>
+                                        <span class="price">{{p.price}} triệu đồng</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-3">
+            <form>
+                <div class="mt-5">
+                    <label class="label-title">Tên sản phẩm</label>
+                    <input name='name' value='{{name}}' class="form-control" placeholder="Nhập tên sản phẩm">
+                </div>
+
+                <div class="mt-2">
+                    <label class="label-title">Hãng sản xuất</label>
+                    <select name="categoryId" class="form-control">
+                        <option value="">Tất cả</option>
+                        {%for c in categoryList %}
+                            <option {%if c.id == categoryId%}selected{%endif%} value="{{c.id}}">{{c.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+
+                <div class="mt-2">
+                    <label class="label-title">RAM</label>
+                    <select name="ramId" class="form-control">
+                        <option value="">Tất cả</option>
+                        {%for r in ramList %}
+                            <option {%if r.id == ramId%} selected {%endif%} value="{{r.id}}">{{r.value_ram}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+
+                <div class="mt-2">
+                    <label class="label-title">Dung lượng bộ nhớ</label>
+                    <select name="romId" class="form-control">
+                        <option value="">Tất cả</option>
+                        {%for rom in romList %}
+                            <option {%if rom.id == romId%} selected {%endif%} value="{{rom.id}}">{{rom.value_rom}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+
+                <div class="mt-2">
+                    <label class="label-title">Mức Giá</label>
+                    <select name="priceId" class="form-control">
+                        <option value="">Tất cả</option>
+                        {%for pr in priceList %}
+                            <option {%if pr.id == priceId%} selected {%endif%} value="{{pr.id}}">{{pr.name}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+
+                <button class="btn btn-primary mt-3" type="submit">Tìm Kiếm</button>
+            </form>
+
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

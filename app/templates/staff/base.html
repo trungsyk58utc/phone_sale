@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/fontawesome/all.css">
+    <script src="/static/js/iconfont.js"></script>
+    <script src="/static/js/jquery 3.3.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <title>Trang Quản Lý</title>
+</head>
+<body>
+{% block navbar %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-3"><a href="/"><img style="height: 150px; width: 200px;" src="/static/image/picture15621685161054.jpg"></a></div>
+        <div class="td mt-4">
+            <h1 style="color: #110580de;">MobileShop</h1>
+            <h5 style="color: orange; margin-left: 20px;">Smartphone giá tốt</h5>
+        </div>
+    </div>
+</div>
+<div class="container bg-primary">
+    <div>
+        <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
+        <ul class="navbar-nav ml-3">
+            <li class="nav-item {% if page == 0 %} active {% endif %}">
+            <a class="nav-link" href="{% url 'list-product' %}">Quản lý sản phẩm</a>
+            </li>
+            <li class="nav-item {% if page == 1 %} active {% endif %}">
+            <a class="nav-link" href="{% url 'list-categories'%}">Quản lý hãng sản xuất</a>
+            </li>
+            <li class="nav-item {% if page == 2 %} active {% endif %}">
+            <a class="nav-link" href="{% url 'list-order-product'%}">Quản lý đơn hàng</a>
+            </li>
+            <li class="nav-item {% if page == 3 %} active {% endif %}">
+            <a class="nav-link" href="#">Quản lý loại cpu</a>
+            </li>
+            <li class="nav-item {% if page == 4 %} active {% endif %}">
+            <a class="nav-link" href="#">Quản lý loại ổ cứng</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto mr-3">
+            <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
+                <img class="rounded-circle" style="width:60px" src="/static/image/user.svg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <p style="margin-left: 23px;">Xin chào {{user.username}}</p>
+                <a class="dropdown-item" href="#">
+                    Thông tin tài khoản
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/accounts/logout">
+                    Đăng xuất
+                </a>
+            </div>
+            </li>
+        </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+
+</body>
+</html>
+{%block content %}
+{% endblock %}

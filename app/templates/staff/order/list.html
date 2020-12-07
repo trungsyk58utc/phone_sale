@@ -1,0 +1,62 @@
+{% extends 'staff/base.html'%}
+
+{% block navbar %}
+{% with page=2 %}
+{{ block.super }}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3">    
+    <h3>Danh sách đơn hàng</h3>
+    {%if listOrder %}
+    <table class="table table-bordered">
+      <tr>
+        <th style="width:5%" class="text-center">STT</th>
+        <th style="width:25%" class="text-center">Sản phẩm</th>
+        <th style="width:20%" class="text-center">Khách hàng</th>          
+        <th style="width:15%" class="text-center">Ngày đặt hàng</th>
+        <th style="width:15%" class="text-center">Ngày nhận hàng</th>
+        <th style="width:10%" class="text-center">Trạng thái</th>
+        <th style="width:10%" class="text-center">Thao tác</th>
+      </tr>
+      {% for o in listOrder %}
+        <tr>
+          <td class="text-center">{{ forloop.counter }}</td>
+          <td class="text-center">{{ o.product.name }}</td>
+          <td class="text-center">{{ o.fullname }} ({{ o.phone }})</td>
+          <td class="text-center">{{ o.order_date|date:"d/m/Y h:i" }}</td>
+          <td class="text-center">{{ o.delivery_date|date:"d/m/Y h:i" }}</td>
+          <td class="text-center">
+            {%if o.status == 1 %}Chờ nhận hàng{% endif %}
+            {%if o.status == 2 %}Đã nhận hàng{% endif %}
+            {%if o.status == 3 %}Đã hủy{% endif %}
+          </td>
+          <td class="text-center">
+            {%if o.status == 1 %}
+              <a href="{% url 'delivery-order' o.id %}" title="Xác nhận đã giao hàng">
+                <i class="fas fa-check"></i>
+              </a>
+              
+              <a href="javascript:void(0)" onclick="cancelOrder(this)" title="Hủy đơn hàng" url="{% url 'cancel-order' o.id %}" style="color:red">
+                <i class="fas fa-times"></i>
+              </a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>Không có dữ liệu</p>
+  {% endif %}    
+</div>
+
+<script>
+  function cancelOrder(a) {
+    var url = a.getAttribute('url');
+    if (confirm('Khách hàng yêu cầu hủy đơn hàng này?')) {
+      location.href = url;
+    }
+  }
+</script>
+{%endblock %}

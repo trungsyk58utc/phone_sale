@@ -1,0 +1,47 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<div class="container pt-3 mb-5">
+    <form method="POST" novalidate>{%csrf_token%}
+        <h5>Đặt mua hàng trực tuyến</h5>
+        <table class="table table-form">
+            <tbody>
+                <tr>
+                    <th colspan="2">
+                        <h5>Thông tin sản phẩm</h5>
+                    </th>
+                </tr>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <td>
+                        <img src="/{{product.image}}" style="max-height: 100px;">
+                        <br>
+                        <span>{{product.name}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Bộ nhớ</th>
+                    <td>{{product.rom}}</td>
+                </tr>
+                <tr>
+                    <th>Giá</th>
+                    <td>{{product.price}} triệu đồng</td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <h5>Thông tin người mua hàng</h5>
+                    </th>
+                </tr>
+                {{form}}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Tiếp tục</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.table input').addClass('form-control');
+    });
+</script>
+{% endblock%}

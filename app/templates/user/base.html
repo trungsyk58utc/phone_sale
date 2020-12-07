@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/js/jquery 3.3.1.slim.min.js"></script>
+    <title>MobileShop | Smartphone giá tốt</title>
+    
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3"><a href="/"><img style="height: 150px; width: 200px;" src="/static/image/picture15621685161054.jpg"></a></div>
+            <div class="td mt-4">
+                <h1 style="color: #110580de;">MobileShop</h1>
+                <h5 style="color: orange; margin-left: 20px;">Smartphone giá tốt</h5>
+            </div>
+        </div>
+    </div>
+    <div class="bg-primary container">
+        <div>
+            <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
+                <ul class="navbar-nav ml-3">
+                    <li class="nav-item {% if not page %} active {% endif %}">
+                        <a class="nav-link" href="/">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item {% if page == 1 %} active {% endif %}">
+                        <a class="nav-link" href="#">Khuyến mại</a>
+                    </li>
+                    <li class="nav-item {% if page == 2 %} active {% endif %}">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+                    <li class="nav-item {% if page == 3 %} active {% endif %}">
+                        <a style="margin-left: 720px;" class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
+
+{%block content%}
+{%endblock%}

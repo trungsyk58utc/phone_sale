@@ -1,0 +1,49 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+
+<style>
+  .imgc{
+    width: 400;
+    height: 600px;
+  }
+  
+</style>
+<div class='container pt-2'>
+  <div class="row">
+    <div class="col-6">
+      <image class='product-detail-image imgc' src="/{{product.image}}">
+    </div>
+
+    <div class="col-6 mt-5">
+      <div class='product-detail-title'><b style="font-size: 30px;">{{product.name}}</b></div>
+      <br>
+      <table class="table">
+        <tr>
+          <td>Hãng sản xuất:</td>
+          <td><b>{{product.category.name}}</b></td>
+        </tr>
+        <tr>
+          <td>RAM:</td>
+          <td><b>{{product.ram}}</b></td>
+        </tr>
+        <tr>
+          <td>Bộ nhớ trong:</td>
+          <td><b>{{product.rom}}</b></td>
+        </tr>
+        <tr>
+            <td>Mô tả</td>
+            <td><b>{{product.description}}</b></td>
+        </tr>
+        <tr>
+          <td>Giá bán:</td>
+          <td><b>{{product.price}} triệu đồng</b></td>
+        </tr>
+      </table>
+      <br>
+      <a class="btn btn-secondary" href="/">Quay lại</a>
+      <a class="btn btn-primary" href="/order-product/{{product.id}}">Mua hàng</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
