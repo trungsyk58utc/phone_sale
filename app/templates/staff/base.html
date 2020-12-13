@@ -23,11 +23,11 @@
         </div>
     </div>
 </div>
-<div class="container bg-primary">
+<div class="bg-primary sticky-top">
     <div>
         <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
         <ul class="navbar-nav ml-3">
-            <li class="nav-item {% if page == 0 %} active {% endif %}">
+            <li style="margin-left: 185px;" class="nav-item {% if page == 0 %} active {% endif %}">
             <a class="nav-link" href="{% url 'list-product' %}">Quản lý sản phẩm</a>
             </li>
             <li class="nav-item {% if page == 1 %} active {% endif %}">
@@ -37,19 +37,19 @@
             <a class="nav-link" href="{% url 'list-order-product'%}">Quản lý đơn hàng</a>
             </li>
             <li class="nav-item {% if page == 3 %} active {% endif %}">
-            <a class="nav-link" href="#">Quản lý loại cpu</a>
+            <a class="nav-link" href="{% url 'list-rom'%}">Quản lý dung lượng ROM</a>
             </li>
             <li class="nav-item {% if page == 4 %} active {% endif %}">
-            <a class="nav-link" href="#">Quản lý loại ổ cứng</a>
+            <a class="nav-link" href="{% url 'list-ram'%}">Quản lý dung lượng RAM</a>
             </li>
         </ul>
 
         <ul class="navbar-nav ml-auto mr-3">
             <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
-                <img class="rounded-circle" style="width:60px" src="/static/image/user.svg">
+            <a style="margin-right:180px" class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
+                <img class="rounded-circle" style="width:50px;" src="/static/image/user.svg">
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div style="margin-right: 180px;" class="dropdown-menu dropdown-menu-right">
                 <p style="margin-left: 23px;">Xin chào {{user.username}}</p>
                 <a class="dropdown-item" href="#">
                     Thông tin tài khoản

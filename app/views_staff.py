@@ -59,20 +59,70 @@ def deleteProduct(request, pk):
     return redirect('list-product')
 
 @login_required
+def listRom(request):
+    romList = ROM.objects.all()
+    return render(request, 'staff/Rom/list.html', {'romList': romList})
+
+@method_decorator(login_required, name='dispatch')
+class RomUpdateView(UpdateView):
+    model = ROM
+    fields = '__all__'
+    template_name = 'staff/Rom/form.html'
+    success_url = '/staff/list-rom'
+
+@method_decorator(login_required, name='dispatch')
+class RomCreateView(CreateView):
+    model = ROM
+    fields = '__all__'
+    template_name = 'staff/Rom/form.html'
+    success_url = '/staff/list-rom'
+
+@login_required
+def deleteRom(request, pk):
+    rom = ROM.objects.get(pk=pk)
+    rom.delete()
+    return redirect('list-rom')
+
+@login_required
+def listRam(request):
+    ramList = RAM.objects.all()
+    return render(request, 'staff/ram/list.html', {'ramList': ramList})
+
+@method_decorator(login_required, name='dispatch')
+class RamCreateView(CreateView):
+    model = RAM
+    fields = '__all__'
+    template_name = 'staff/ram/form.html'
+    success_url = '/staff/list-ram'
+
+@method_decorator(login_required, name='dispatch')
+class RamUpdateView(UpdateView):
+    model = RAM
+    fields = '__all__'
+    template_name = 'staff/ram/form.html'
+    success_url = '/staff/list-ram'
+
+@login_required
+def deleteRam(request, pk):
+    ram = RAM.objects.get(pk=pk)
+    ram.delete()
+    return redirect('list-ram')
+
+@login_required
 def listOrderProducts(request):
     listOrder = Order.objects.all().order_by('status')
     return render(request, 'staff/order/list.html', {'listOrder':listOrder})
 
 @login_required 
 def deliveryOrder(request, pk):
-    deliverDate_error = ''
+    delivery_date_error = ''
     if request.method == 'POST':
         try:
             delivery_date = datetime.strptime(request.POST['delivery_date'], '%d/%m/%Y %H:%M')
         except:
             delivery_date_error = 'Thời gian không hợp lệ'
         
-        if deliverDate_error == '':
+        if delivery_date_error == '':
             order = Order.objects.get(pk=pk)
             order.status = Order.Status.DELIVERED
             order.delivery_date = delivery_date

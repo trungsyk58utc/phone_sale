@@ -28,12 +28,12 @@
           <td class="text-center">{{ o.order_date|date:"d/m/Y h:i" }}</td>
           <td class="text-center">{{ o.delivery_date|date:"d/m/Y h:i" }}</td>
           <td class="text-center">
-            {%if o.status == 1 %}Chờ nhận hàng{% endif %}
-            {%if o.status == 2 %}Đã nhận hàng{% endif %}
-            {%if o.status == 3 %}Đã hủy{% endif %}
+            {%if o.status == 0 %}Chờ nhận hàng{% endif %}
+            {%if o.status == 1 %}Đã nhận hàng{% endif %}
+            {%if o.status == 2 %}Đã hủy{% endif %}
           </td>
           <td class="text-center">
-            {%if o.status == 1 %}
+            {%if o.status == 0 %}
               <a href="{% url 'delivery-order' o.id %}" title="Xác nhận đã giao hàng">
                 <i class="fas fa-check"></i>
               </a>

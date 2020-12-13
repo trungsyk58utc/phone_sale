@@ -112,3 +112,9 @@ def signup(request):
             return redirect('home')
     
     return render(request, 'registration/signup.html', {'form':form})
+
+def promotion(request):
+    return render(request, 'user/promotion.html')
+
+def contract(request):
+    return render(request, 'user/contract.html')
